@@ -20,10 +20,5 @@ public abstract class ParticleSystem extends Entity{
     protected List<Particle> particles;
     protected double particleLifeSpan;
     protected boolean repeating;
-
-    @Override
-    public void update(double deltaTime) {
-        super.update(deltaTime);
-    }
 }
 

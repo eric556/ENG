@@ -8,6 +8,7 @@
 package nowace.Entities.Projectiles;
 
 import nowace.Entities.Entity;
+import nowace.Math.Vector;
 
 /**
  * @author nowace
