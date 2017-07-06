@@ -60,6 +60,10 @@ public abstract class Entity {
         return this.rotation;
     }
 
+    public void setRotation(double rotation){
+        this.rotation = rotation;
+    }
+
     public Bound getBound(){
         return this.bound;
     }

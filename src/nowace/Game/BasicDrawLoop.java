@@ -9,6 +9,7 @@ package nowace.Game;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
 import nowace.Entities.Entity;
 
 import java.util.List;
@@ -17,26 +18,24 @@ import java.util.List;
  * @author nowace
  * @version 2017.05.12
  */
-public class DrawLoop extends AnimationTimer {
+public class BasicDrawLoop extends Loop {
 
     private Canvas canvas;
     private List<Entity> entities;
-    private int i = 0;
-    private double averageFPS = 0;
-    private long previous = 0;
-    private double deltaTime = 0;
+    private Color clearColor;
 
-    public DrawLoop(Canvas canvas, List<Entity> entities){
+    public BasicDrawLoop(Canvas canvas, List<Entity> entities){
         this.canvas = canvas;
         this.entities = entities;
+        this.clearColor = Color.BLACK;
     }
 
     @Override
     public void handle(long now) {
-        deltaTime = (now - previous) * 1e-9;
-        previous = now;
-
+        super.handle(now);
         canvas.getGraphicsContext2D().clearRect(0,0,canvas.getWidth(),canvas.getHeight());
+        canvas.getGraphicsContext2D().setStroke(clearColor);
+        canvas.getGraphicsContext2D().setFill(clearColor);
         canvas.getGraphicsContext2D().fillRect(0,0,canvas.getWidth(),canvas.getHeight());
         entities.forEach(entity -> {
             entity.draw(canvas.getGraphicsContext2D());
@@ -44,15 +43,7 @@ public class DrawLoop extends AnimationTimer {
         //printFPS();
     }
 
-    private void printFPS(){
-        if(i == 50) {
-            System.out.println("Draw Updates: " + (averageFPS/i));
-            i = 0;
-            averageFPS = 0;
-        }else{
-            averageFPS+=(1/deltaTime);
-            i++;
-        }
+    public void setClearColor(Color color){
+        clearColor = color;
     }
-
 }

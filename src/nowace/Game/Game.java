@@ -22,8 +22,8 @@ import java.util.List;
  */
 public abstract class Game extends Scene {
 
-    protected UpdateLoop updateLoop;
-    protected DrawLoop drawLoop;
+    protected Loop updateLoop;
+    protected Loop drawLoop;
     protected List<Entity> entities;
     public static Vector windowSize;
 
@@ -31,8 +31,8 @@ public abstract class Game extends Scene {
     public Game(@NamedArg("root") Parent root, Canvas canvas, @NamedArg("width") double width, @NamedArg("height") double height) {
         super(root, width, height);
         entities = new LinkedList<>();
-        updateLoop = new UpdateLoop(entities);
-        drawLoop = new DrawLoop(canvas, entities);
+        updateLoop = new BasicUpdateLoop(entities);
+        drawLoop = new BasicDrawLoop(canvas, entities);
         windowSize = new Vector(canvas.getWidth(),canvas.getHeight());
     }
 
